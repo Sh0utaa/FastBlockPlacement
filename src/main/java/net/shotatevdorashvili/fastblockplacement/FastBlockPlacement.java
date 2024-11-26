@@ -17,11 +17,11 @@ import org.slf4j.Logger;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(FastBlockPlacement.MOD_ID)
+@Mod(FastBlockPlacement.MODID)
 public class FastBlockPlacement
 {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "fastblockplacement";
+    public static final String MODID = "fastblockplacement";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
@@ -42,9 +42,6 @@ public class FastBlockPlacement
 
         // Register ClientSideHandling
         modEventBus.register(ClientSideHandling.class);
-
-        // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -66,7 +63,7 @@ public class FastBlockPlacement
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
 
