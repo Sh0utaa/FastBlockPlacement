@@ -1,6 +1,7 @@
 package net.shotatevdorashvili.fastblockplacement;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(FastBlockPlacement.MOD_ID)
 public class FastBlockPlacement
@@ -22,6 +24,8 @@ public class FastBlockPlacement
     public static final String MOD_ID = "fastblockplacement";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    private static final Minecraft mc = Minecraft.getInstance();
 
     public FastBlockPlacement()
     {
@@ -35,6 +39,9 @@ public class FastBlockPlacement
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
+        // Register ClientSideHandling
+        modEventBus.register(ClientSideHandling.class);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
